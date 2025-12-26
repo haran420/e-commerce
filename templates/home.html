@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Python E-Commerce</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header class="topbar">
+    <h1>🛒 Python E-Commerce</h1>
+
+    <a href="/cart" class="cart-icon">
+        🛍
+        {% if cart_count > 0 %}
+        <span class="badge">{{ cart_count }}</span>
+        {% endif %}
+    </a>
+</header>
+
+<div class="product-grid">
+{% for p in products %}
+    <div class="product-card">
+        <img src="{{ url_for('static', filename=p.image) }}">
+        <h3>{{ p.name }}</h3>
+        <p class="category">{{ p.category }}</p>
+        <p class="extra">{{ p.extra }}</p>
+        <p class="price">₹{{ p.price }}</p>
+        <a href="/add/{{ p.pid }}" class="btn">Add to Cart</a>
+    </div>
+{% endfor %}
+</div>
+
+</body>
+</html>
